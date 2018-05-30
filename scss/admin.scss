@@ -1,0 +1,16 @@
+@import "general";
+@include forall;
+.content {
+    overflow: hidden;
+    .aside {
+        width: 25%;
+        min-width: 150px;
+        max-width: 350px;
+        float: left;
+        padding: 10px;
+    }
+    .list {
+        overflow: hidden;
+        background: red;
+    }
+}
