@@ -1,0 +1,24 @@
+<script src="../js/vue.js"></script>
+
+<div id="main">
+    <feedback v-for="item in content" v-bind:list="item" v-bind:key="item.id"></feedback>
+</div>
+
+<script>
+    Vue.component('feedback', {
+        props: ['list'],
+        template: '<li> {{list.text}} </li>'
+    })
+    var app = new Vue({
+        el: '#main',
+        data: {
+            content: [{
+                id: 1,
+                text: "one"
+            }, {
+                id: 2,
+                text: "two"
+            }]
+        }
+    })
+</script>
