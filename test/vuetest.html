@@ -1,0 +1,23 @@
+<script src="vue.js"></script>
+<div id="feedbacklist" class="list-group">
+    <feedback v-for="(item,index) in result" v-if="index >= 0 && index<10" v-bind:page="pagenum" v-bind:todo="item" v-bind:key="index"></feedback>
+</div>
+
+<script>
+    Vue.component('feedback', {
+        props: ['todo'],
+        template: '<button type="button" class="list-group-item">{{todo.content}}</button>'
+    });
+
+    var app7 = new Vue({
+        el: '#feedbacklist',
+        data: {
+            result: [{
+                content: "test"
+            }, {
+                content: 'more test'
+            }],
+            pagenum: 0
+        }
+    });
+</script>

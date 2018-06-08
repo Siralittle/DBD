@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+a {
+  text-decoration: none; }
+
+.formitem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 80%;
+  min-width: 400px;
+  max-width: 600px;
+  height: 70vh;
+  margin: 0 auto; }
+  .formitem form {
+    padding: 20px; }
+    .formitem form .inputitem {
+      margin: 10px 0; }
+
+/*# sourceMappingURL=register.css.map */

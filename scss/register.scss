@@ -1,0 +1,18 @@
+@import "general";
+@include forall;
+.formitem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 80%;
+    min-width: 400px;
+    max-width: 600px;
+    height: 70vh;
+    margin: 0 auto;
+    form {
+        padding: 20px;
+        .inputitem {
+            margin: 10px 0;
+        }
+    }
+}

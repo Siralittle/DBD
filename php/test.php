@@ -1,6 +1,9 @@
 <?php
+    // error_reporting(0);
     header("content-Type: text/html; charset=utf-8");
 
+    // $page = $_REQUEST['page'];
+    // $page = 10;
     $server="localhost";
     $dbname="company";
     $username="root";
@@ -16,9 +19,9 @@
         echo '数据库连接失败';
         exit;
     }
-    
     $arr = array();
-    $stmt=$link->prepare('SELECT content FROM feedback LIMIT 0,10');
+    // $page = intval($page);
+    $stmt=$link->prepare("SELECT content FROM feedback");
     $stmt->bindValue(1,$user);
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_OBJ)){
