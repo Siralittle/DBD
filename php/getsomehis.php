@@ -2,13 +2,13 @@
     error_reporting(0);
     header("content-Type: text/html; charset=utf-8");
 
-    // $page = $_REQUEST['page'];
+    $id = $_REQUEST['id'];
     // $page = 10;
     $server="localhost";
     $dbname="company";
     $username="root";
     $password="";
-
+    // echo $id;
     $user = "super";
     $pwd = "123456";
 
@@ -21,8 +21,8 @@
     }
     $arr = array();
     // $page = intval($page);
-    $stmt=$link->prepare("SELECT content FROM feedback WHERE isshow=1");
-    $stmt->bindValue(1,$user);
+    $stmt=$link->prepare("SELECT product.name,size,amount,date FROM history,product WHERE comid = $id && history.proid = product.id");
+    $stmt->bindValue(1,$id);
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_OBJ)){
         array_push($arr,$row);

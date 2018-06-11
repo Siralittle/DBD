@@ -21,8 +21,8 @@
     }
     $arr = array();
     // $page = intval($page);
-    $stmt=$link->prepare("SELECT content FROM feedback WHERE isshow=1");
-    $stmt->bindValue(1,$user);
+    $stmt=$link->prepare("SELECT company,product.name,size,amount,price,date FROM customer,product,history WHERE customer.id=history.comid and product.id = history.proid");
+    // $stmt->bindValue(1,$user);
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_OBJ)){
         array_push($arr,$row);

@@ -16,34 +16,32 @@
 
 <body>
     <div class="page-header">
-        <h1>后台管理<small>只为更高的效率。</small></h1>
+        <h1>后台管理</h1>
     </div>
     <div class="content">
         <div class="aside">
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation"><a href="admin.html">信息管理</a></li>
-                <li role="presentation" class="active"><a href="#">销售记录</a></li>
+                <li role="presentation" class="active"><a href="history.html">销售记录</a></li>
                 <li role="presentation"><a href="message.html">留言管理</a></li>
+                <li role="presentation"><a href="addproduct.html">添加货物</a></li>
             </ul>
         </div>
         <div class="list">
-            <table id="dg" class="easyui-datagrid" style="width:100%;" title="客户信息" data-options="url:'datagrid_data.json',pagination:true,fitColumns:true,singleSelect:true" toolbar="#tb">
+            <table id="dg" class="easyui-datagrid" style="width:100%;" title="销售记录" data-options="height:300,url:'php/showallhis.php',pagination:true,fitColumns:true,singleSelect:true" toolbar="#tb">
                 <thead>
                     <tr>
-                        <th data-options="field:'name',width:'15%'">单位名称</th>
-                        <th data-options="field:'phone',width:'20%'">商品名称</th>
+                        <th data-options="field:'company',width:'15%'">单位名称</th>
+                        <th data-options="field:'name',width:'20%'">商品名称</th>
                         <th data-options="field:'size',width:'20%'">规格</th>
-                        <th data-options="field:'company',width:'10%'">数量</th>
+                        <th data-options="field:'amount',width:'10%'">数量</th>
                         <th data-options="field:'price',width:'10%'">价格</th>
                         <th data-options="field:'date',width:'15%'">购买时间</th>
                     </tr>
                 </thead>
+
             </table>
-            <div id="tb">
-                <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:alert('Add')">Add</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="javascript:alert('Cut')">Cut</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:alert('Save')">Save</a>
-            </div>
+
         </div>
     </div>
 </body>

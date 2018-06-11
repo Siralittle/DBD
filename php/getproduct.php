@@ -9,8 +9,8 @@
     $username="root";
     $password="";
 
-    $user = "super";
-    $pwd = "123456";
+    // $user = "super";
+    // $pwd = "123456";
 
     try{
         $link = new PDO("mysql:host=$server;dbname=$dbname", $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
@@ -21,8 +21,8 @@
     }
     $arr = array();
     // $page = intval($page);
-    $stmt=$link->prepare("SELECT content FROM feedback WHERE isshow=1");
-    $stmt->bindValue(1,$user);
+    $stmt=$link->prepare("SELECT * FROM product");
+    // $stmt->bindValue(1,$user);
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_OBJ)){
         array_push($arr,$row);

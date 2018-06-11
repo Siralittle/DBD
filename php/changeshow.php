@@ -1,11 +1,8 @@
 <?php
-    error_reporting(0);
+    // error_reporting(0);
     header("content-Type: text/html; charset=utf-8");
-    $table = $_REQUEST['table'];
-    $name = $_REQUEST['name'];
-    $phone = $_REQUEST['phone'];
-    $company = $_REQUEST['company'];
-    $id = $_REQUEST['id'];
+    @$isshow = 1-intval($_REQUEST['state']);
+    @$id = $_REQUEST['key'];
     $server = "localhost";
     $dbname = "company";
     $username = "root";
@@ -18,12 +15,10 @@
         exit;
     }
     try{
-        $stmt=$link->prepare("UPDATE customer SET name=? , phone=?, company=? where id=?");
+        $stmt=$link->prepare("UPDATE feedback SET isshow=? where id=?");
         // $stmt->bingValue(1,$table);
-        $stmt->bindValue(1,$name);
-        $stmt->bindValue(2,$phone);
-        $stmt->bindValue(3,$company);
-        $stmt->bindValue(4,$id);
+        $stmt->bindValue(1,$isshow);
+        $stmt->bindValue(2,$id);
         $stmt->execute();
         echo "success";
     } catch(PDOException $e){

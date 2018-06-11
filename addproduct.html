@@ -11,40 +11,60 @@
     <script src="css/easyui/easyui-lang-zh_CN.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/admin.css">
-    <title>Document</title>
+    <title>产品列表</title>
 </head>
 
 <body>
     <div class="page-header">
-        <h1>后台管理<small>只为更高的效率。</small></h1>
+        <h1>后台管理</h1>
     </div>
     <div class="content">
         <div class="aside">
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation"><a href="admin.html">信息管理</a></li>
-                <li role="presentation" class="active"><a href="#">销售记录</a></li>
+                <li role="presentation"><a href="history.html">销售记录</a></li>
                 <li role="presentation"><a href="message.html">留言管理</a></li>
+                <li role="presentation" class="active"><a href="addproduct.html">添加货物</a></li>
             </ul>
         </div>
         <div class="list">
-            <table id="dg" class="easyui-datagrid" style="width:100%;" title="客户信息" data-options="url:'datagrid_data.json',pagination:true,fitColumns:true,singleSelect:true" toolbar="#tb">
+            <div class="inputitem">
+                <div class="input-group">
+                    添加产品名称：
+                    <input type="text" id="proname" class="form-control" placeholder="产品名称" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div id="subm" class="btn btn-default">提交</div>
+            <table id="dg" class="easyui-datagrid" style="width:100%;" title="产品列表" data-options="height:'400px;',url:'php/getproduct.php',pagination:true,fitColumns:true,singleSelect:true" toolbar="#tb">
                 <thead>
                     <tr>
-                        <th data-options="field:'name',width:'15%'">单位名称</th>
-                        <th data-options="field:'phone',width:'20%'">商品名称</th>
-                        <th data-options="field:'size',width:'20%'">规格</th>
-                        <th data-options="field:'company',width:'10%'">数量</th>
-                        <th data-options="field:'price',width:'10%'">价格</th>
-                        <th data-options="field:'date',width:'15%'">购买时间</th>
+                        <th data-options="field:'id',width:'15%'">产品id</th>
+                        <th data-options="field:'name',width:'20%'">产品名称</th>
                     </tr>
                 </thead>
             </table>
-            <div id="tb">
-                <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:alert('Add')">Add</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="javascript:alert('Cut')">Cut</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:alert('Save')">Save</a>
-            </div>
         </div>
+        <script>
+            function createxhrandsend() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // console.log(xhr.response);
+                        // alert(xhr.response);
+                        if (xhr.response == "success") {
+                            $.messager.alert('提示', '新产品提交成功！');
+                            $('#dg').datagrid("reload");
+                        } else {
+                            $.messager.alert('提示', '新产品提交失败！');
+                        }
+                    }
+                }
+                xhr.open("GET", `php/addproduct.php?proname=${proname.value}`, true);
+                xhr.send();
+            }
+            // var toout;
+            subm.addEventListener("click", createxhrandsend, false);
+        </script>
     </div>
 </body>
 

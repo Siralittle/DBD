@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/easyui/bootstrap/easyui.css">
+    <link rel="stylesheet" href="css/easyui/icon.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="css/easyui/jquery.easyui.min.js"></script>
+    <script src="css/easyui/easyui-lang-zh_CN.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/admin.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="page-header">
+        <h1>后台管理</h1>
+    </div>
+    <div class="content">
+        <div class="aside">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation"><a href="admin.html">信息管理</a></li>
+                <li role="presentation"><a href="history.html">销售记录</a></li>
+                <li role="presentation" class="active"><a href="message.html">留言管理</a></li>
+                <li role="presentation"><a href="addproduct.html">添加货物</a></li>
+            </ul>
+        </div>
+        <div class="list">
+            <table id="dg" class="easyui-datagrid" style="width:100%;" title="客户信息" data-options="height:300,url:'php/showassess.php',pagination:true,fitColumns:true,singleSelect:true" toolbar="#tb">
+                <thead>
+                    <tr>
+                        <th data-options="field:'id',width:'15%'">编号</th>
+
+                        <th data-options="field:'company',width:'15%'">公司名称</th>
+                        <th data-options="field:'content',width:'20%'">评价内容</th>
+                        <th data-options="field:'grade',width:'20%'">评论分类</th>
+                        <th data-options="field:'isshow',width:'10%'">是否显示</th>
+                    </tr>
+                </thead>
+            </table>
+            <div id="tb">
+                <div class="easyui-linkbutton" data-options="plain:true">更改显示状态</a>
+                </div>
+            </div>
+            <script>
+                var x = document.querySelector('#tb div');
+                x.addEventListener("click", function() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            // console.log(xhr.response);
+                            // alert(xhr.response);
+                            if (xhr.response == "success") {
+                                $.messager.alert('提示', '展示状态修改成功！');
+
+                                $("#dg").datagrid('reload');
+
+                            } else {
+                                $.messager.alert('提示', '修改提交失败！');
+                            }
+                        }
+                    }
+
+                    xhr.open("GET", `php/changeshow.php?key=${$('#dg').datagrid('getSelected')['id']}&state=${$('#dg').datagrid('getSelected')['isshow']}`, true);
+                    xhr.send();
+
+
+                }, false);
+            </script>
+        </div>
+</body>
+
+</html>
